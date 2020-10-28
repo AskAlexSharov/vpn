@@ -2,17 +2,17 @@ version: '2.2'
 
 services:
 
-  vpn:
-    image: vpn
-    build: ./vpn
-    privileged: true
-    ports:
-      - 1194:1194/udp
-      - 443:443/tcp 
-
-    nginx:
+    vpn:
         image: vpn
         build: ./vpn
+        privileged: true
+        ports:
+            - 1194:1194/udp
+            - 443:443/tcp 
+
+    nginx:
+        image: nginx
+        build: ./nginx
         privileged: true
         ports:
             - 1194:1194/udp
