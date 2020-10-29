@@ -10,11 +10,20 @@ services:
             - 1194:1194/udp
             - 443:443/tcp 
 
+    serveconfig:
+        image: vpn
+        build: ./vpn
+        volumes_from: 
+            - vpn
+        ports:
+            - 8080:8080
+        command: serveconfig
+
     nginx:
         image: nginx
         build: ./nginx
         privileged: true
+        volumes:
+            - ./nginx:/etc/nginx/conf.d
         ports:
-            - 1194:1194/udp
-            - 443:443/tcp 
-
+            - 8081:80
